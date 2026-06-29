@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { FaHeart } from 'react-icons/fa';
 
-const Background = () => {
+const Background = ({ hideFlowers = false }) => {
   // Fixed particle positions based on the user's requested spots
   const particles = [
     { id: 1, x: 25, y: 8, scale: 0.9, rotate: 15 },
@@ -43,7 +43,7 @@ const Background = () => {
       />
 
       {/* Static Flower Decorations */}
-      {particles.map((p) => (
+      {!hideFlowers && particles.map((p) => (
         <div
           key={p.id}
           className="absolute drop-shadow-md text-3xl md:text-5xl"

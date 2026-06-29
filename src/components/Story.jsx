@@ -44,7 +44,7 @@ const Story = ({ onComplete }) => {
       exit={{ opacity: 0, scale: 0.9 }}
       transition={{ duration: 1 }}
     >
-      <div className="max-w-md w-full glass rounded-3xl p-8 relative overflow-hidden box-glow">
+      <div className="max-w-md w-full glass rounded-3xl p-8 relative overflow-hidden box-glow mb-16 md:mb-0">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentChapter}

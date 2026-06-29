@@ -37,8 +37,8 @@ function App() {
   };
 
   return (
-    <div className="relative min-h-screen w-full font-outfit text-gray-800 flex justify-center overflow-hidden">
-      <Background />
+    <div className="relative min-h-[100dvh] w-full font-outfit text-gray-800 flex justify-center overflow-hidden pb-16 md:pb-0">
+      <Background hideFlowers={phase === 5} />
       <AnimatePresence mode="wait">
         {renderPhase()}
       </AnimatePresence>

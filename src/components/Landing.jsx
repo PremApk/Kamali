@@ -25,12 +25,12 @@ const Landing = ({ onStart }) => {
       </motion.div>
 
       <motion.p 
-        className="text-lg md:text-xl text-gray-700 font-playfair italic mb-12 max-w-md"
+        className="text-lg md:text-xl font-playfair italic text-gray-700 mb-10 text-center px-4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 1 }}
       >
-        "Someone has something special to tell you..."
+        "I have something special to tell you..."
       </motion.p>
 
       <motion.button
