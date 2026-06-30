@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
-import { FaHeart } from 'react-icons/fa';
+import { FaHeart, FaLock } from 'react-icons/fa';
 
 // Target date: July 2, 2026 00:00:00
 const TARGET_DATE = new Date('2026-07-02T00:00:00').getTime();
@@ -66,7 +66,8 @@ const CountdownScreen = ({ onComplete }) => {
 
       const particleCount = 50 * (timeLeftConfetti / duration);
       confetti({
-        ...defaults, particleCount,
+        ...defaults,
+        particleCount,
         origin: { x: Math.random(), y: Math.random() - 0.2 },
         colors: ['#ffb6c1', '#f4c2c2', '#ffffff', '#ff6b81']
       });
@@ -92,58 +93,47 @@ const CountdownScreen = ({ onComplete }) => {
       exit={{ opacity: 0, y: -50 }}
       transition={{ duration: 0.8 }}
     >
-      <AnimatePresence mode="wait">
-        {!isFinished ? (
-          <motion.div
-            key="countdown"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            className="flex flex-col items-center"
+      <div className="flex flex-col items-center max-w-md w-full">
+        <h2 className="text-2xl md:text-3xl text-gray-700 font-playfair italic mb-8">
+          {!isFinished ? "Waiting for a special day..." : "The wait is over. Open my heart..."}
+        </h2>
+        
+        <div className="flex gap-3 md:gap-6 mb-12">
+          <TimeUnit value={timeLeft.days} label="Days" />
+          <TimeUnit value={timeLeft.hours} label="Hours" />
+          <TimeUnit value={timeLeft.minutes} label="Mins" />
+          <TimeUnit value={timeLeft.seconds} label="Secs" />
+        </div>
+
+        <motion.button
+          onClick={isFinished ? onComplete : undefined}
+          disabled={!isFinished}
+          className={`px-8 py-4 rounded-full text-xl font-outfit shadow-lg flex items-center gap-3 transition-all select-none ${
+            isFinished
+              ? 'glass-dark text-gray-800 cursor-pointer hover:scale-105 active:scale-95 box-glow'
+              : 'bg-gray-300/40 text-gray-400 cursor-not-allowed opacity-50 border border-gray-400/10'
+          }`}
+          whileHover={isFinished ? { scale: 1.05 } : {}}
+          whileTap={isFinished ? { scale: 0.95 } : {}}
+        >
+          <span>Open My Heart</span>
+          {isFinished ? (
+            <FaHeart className="text-red-500 animate-pulse" />
+          ) : (
+            <FaLock className="text-gray-400 text-lg" />
+          )}
+        </motion.button>
+
+        {/* Skip button for testing/development */}
+        {!isFinished && (
+          <button 
+            onClick={triggerCelebration}
+            className="text-xs text-gray-400 hover:text-pink-500 underline opacity-50 hover:opacity-100 transition-opacity mt-6"
           >
-            <h2 className="text-2xl md:text-3xl text-gray-700 font-playfair italic mb-8">
-              Waiting for a special day...
-            </h2>
-            <div className="flex gap-3 md:gap-6 mb-12">
-              <TimeUnit value={timeLeft.days} label="Days" />
-              <TimeUnit value={timeLeft.hours} label="Hours" />
-              <TimeUnit value={timeLeft.minutes} label="Mins" />
-              <TimeUnit value={timeLeft.seconds} label="Secs" />
-            </div>
-            
-            {/* Developer / Tester skip button */}
-            <button 
-              onClick={triggerCelebration}
-              className="text-xs text-gray-400 hover:text-pink-500 underline opacity-50 hover:opacity-100 transition-opacity mt-4"
-            >
-              Skip countdown (for testing)
-            </button>
-          </motion.div>
-        ) : (
-          <motion.div
-            key="celebration"
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ type: "spring", bounce: 0.5, duration: 1 }}
-            className="flex flex-col items-center"
-          >
-            <h1 className="text-5xl md:text-7xl font-great-vibes text-glow text-[#ff6b81] mb-6 leading-tight">
-              🎉 Happy Birthday <br/> Kamali ❤️ 🎉
-            </h1>
-            <p className="text-lg md:text-xl text-gray-700 font-playfair mb-10">
-              The wait is over. The magic begins now.
-            </p>
-            <motion.button
-              onClick={onComplete}
-              className="glass-dark px-8 py-4 rounded-full text-xl font-outfit text-gray-800 shadow-lg flex items-center gap-3 hover:scale-105 active:scale-95 transition-all box-glow"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Start Our Story <FaHeart className="text-red-500 animate-pulse" />
-            </motion.button>
-          </motion.div>
+            Skip countdown (for testing)
+          </button>
         )}
-      </AnimatePresence>
+      </div>
     </motion.div>
   );
 };
