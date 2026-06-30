@@ -124,15 +124,6 @@ const CountdownScreen = ({ onComplete }) => {
           )}
         </motion.button>
 
-        {/* Skip button for testing/development */}
-        {!isFinished && (
-          <button 
-            onClick={triggerCelebration}
-            className="text-xs text-gray-400 hover:text-pink-500 underline opacity-50 hover:opacity-100 transition-opacity mt-6"
-          >
-            Skip countdown (for testing)
-          </button>
-        )}
       </div>
     </motion.div>
   );
