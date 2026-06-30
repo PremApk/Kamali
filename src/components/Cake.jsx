@@ -137,6 +137,16 @@ const Cake = () => {
               <h1 className="text-4xl md:text-5xl font-great-vibes text-pink-600 font-bold mb-4 drop-shadow-sm leading-relaxed">
                 Happy Birthday Kamali❤️
               </h1>
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.5, duration: 1 }}
+                className="mt-8 border-t border-pink-200/50 pt-4 flex justify-center"
+              >
+                <div className="glass px-4 py-2 rounded-full text-xs font-semibold text-pink-600/85 tracking-wider shadow-sm uppercase backdrop-blur-md">
+                  Made with Love ~ APK!
+                </div>
+              </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
