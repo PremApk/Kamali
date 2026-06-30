@@ -3,6 +3,7 @@ import { AnimatePresence } from 'framer-motion';
 import Background from './components/Background';
 import Landing from './components/Landing';
 import CountdownScreen from './components/CountdownScreen';
+import Acrostic from './components/Acrostic';
 import Story from './components/Story';
 import LoveMeter from './components/LoveMeter';
 import FunnySection from './components/FunnySection';
@@ -20,16 +21,18 @@ function App() {
       case 1:
         return <CountdownScreen key="countdown" onComplete={() => setPhase(2)} />;
       case 2:
-        return <Story key="story" onComplete={() => setPhase(3)} />;
+        return <Acrostic key="acrostic" onComplete={() => setPhase(3)} />;
       case 3:
-        return <LoveMeter key="meter" onComplete={() => setPhase(4)} />;
+        return <Story key="story" onComplete={() => setPhase(4)} />;
       case 4:
-        return <FunnySection key="funny" onComplete={() => setPhase(5)} />;
+        return <LoveMeter key="meter" onComplete={() => setPhase(5)} />;
       case 5:
-        return <TravelPromise key="travel" onComplete={() => setPhase(6)} />;
+        return <FunnySection key="funny" onComplete={() => setPhase(6)} />;
       case 6:
-        return <Proposal key="proposal" onComplete={() => setPhase(7)} />;
+        return <TravelPromise key="travel" onComplete={() => setPhase(7)} />;
       case 7:
+        return <Proposal key="proposal" onComplete={() => setPhase(8)} />;
+      case 8:
         return <Finale key="finale" />;
       default:
         return null;
@@ -38,7 +41,7 @@ function App() {
 
   return (
     <div className="relative min-h-[100dvh] w-full font-outfit text-gray-800 flex justify-center overflow-hidden pb-16 md:pb-0">
-      <Background hideFlowers={phase === 5} />
+      <Background hideFlowers={phase === 6} />
       <AnimatePresence mode="wait">
         {renderPhase()}
       </AnimatePresence>
