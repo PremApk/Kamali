@@ -59,7 +59,7 @@ const Cake = () => {
           animate={{ y: '-130vh', x: `${(Math.random() - 0.5) * 20}vw` }}
           transition={{ duration: b.duration, delay: b.delay, ease: "easeOut" }}
         >
-          {Math.random() > 0.5 ? "🎈" : (Math.random() > 0.5 ? "🎉" : "🎊")}
+          🎈
         </motion.div>
       ))}
 
@@ -113,6 +113,11 @@ const Cake = () => {
           <div className="w-48 h-20 bg-pink-300 mx-auto rounded-b-xl relative z-10 shadow-xl flex justify-around items-center px-4">
             <div className="w-4 h-4 bg-white rounded-full opacity-50"></div>
             <div className="w-4 h-4 bg-white rounded-full opacity-50"></div>
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <span className="text-white text-3xl font-extrabold font-playfair tracking-wider drop-shadow-md select-none opacity-90">
+                26
+              </span>
+            </div>
             <div className="w-4 h-4 bg-white rounded-full opacity-50"></div>
             <div className="w-4 h-4 bg-white rounded-full opacity-50"></div>
           </div>
@@ -130,7 +135,7 @@ const Cake = () => {
               className="text-center w-full"
             >
               <h1 className="text-4xl md:text-5xl font-great-vibes text-pink-600 font-bold mb-4 drop-shadow-sm leading-relaxed">
-                Happy 26th birthday <br/> Kamali! ❤️🎂
+                Happy Birthday Kamali❤️
               </h1>
             </motion.div>
           )}
